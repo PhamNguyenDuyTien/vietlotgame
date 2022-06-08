@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 20px;
+        }
+        button{
+            width: 100px;
+            padding: 10px;
+        }
+        .btn{
+            margin: 10px;
+        }
+        .flex{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span>Mời bạn nhập số:</span>
+        <input type="number" name="number" id="number">
+        <div class="flex">
+            <div class="btn">
+                <button type="button" onclick="check()">Check</button>
+            </div>
+            <div class="btn">
+                <button type="button" onclick="window.location.reload();">Reset</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        // Tạo mảng trắng
+        let arr = [];
+        let arr1 = new Array(1);
+        let arr2 = new Array(2);
+        let arr3 = new Array(3);
+        let arr4 = new Array(4);
+        let arr5 = new Array(5);
+        let arr6 = new Array(6);
+        let arr7 = new Array(7);
+        let arr8 = new Array(8);
+
+        //  Tạo các phần tử random sau đó thêm vào mảng
+
+        do {
+            let num = Math.round(Math.random() * 99);
+            arr.push(num);
+            arr = arr.filter(function(item, index){
+                return arr.indexOf(item) === index;
+        });
+        } while (arr.length < 36);
+        console.log(arr);
+
+        // index cho các phần tử
+        var x = [];
+        let i = 0;
+        let j = 0;
+        while(i < arr.length){
+            x.push(i);
+            j++;
+            i = i + j;
+        }
+        console.log(x);
+
+        // Chia mảng chính 36 phần tử thành các mảng con có kích thước từ 1->8
+        function checkArr(array){
+            let aLength = arr.length;
+            var y = array.length;
+            array = arr.slice(x[y - 1], y + x[y - 1]);
+            return array;
+        }
+
+        arr1 = checkArr(arr1);
+        arr2 = checkArr(arr2);
+        arr3 = checkArr(arr3);
+        arr4 = checkArr(arr4);
+        arr5 = checkArr(arr5);
+        arr6 = checkArr(arr6);
+        arr7 = checkArr(arr7);
+        arr8 = checkArr(arr8);
+        
+        // Hiển thị ra màn hình để kiểm tra
+        console.log(arr1);
+        console.log(arr2);
+        console.log(arr3);
+        console.log(arr4);
+        console.log(arr5);
+        console.log(arr6);
+        console.log(arr7);
+        console.log(arr8);       
+            
+        var clicks = 0;
+
+        // Kiểm tra xem có đsung hay không?
+        function checkAns(array){
+            var userGuess = document.getElementById('number').value;
+            array.forEach(function(value,index){
+                if(userGuess == array[index]){
+                    var a = alert("You win " + array.length);
+                    clicks = 0;
+                    return a;
+                }
+            })
+
+        }
+
+        // Check 
+        function check(){
+            if(checkAns(arr1) || 
+            checkAns(arr2)|| 
+            checkAns(arr3)|| 
+            checkAns(arr4)||
+            checkAns(arr5)||
+            checkAns(arr6)|| 
+            checkAns(arr7)|| 
+            checkAns(arr8)){
+                clicks = 0;
+            }
+            else{
+                clicks += 1;
+                if(clicks == 2){
+                    alert("Lose!");
+                    clicks = 0;
+                }
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
